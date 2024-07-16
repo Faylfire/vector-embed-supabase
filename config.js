@@ -9,7 +9,7 @@ export const openai = new OpenAI({
 });
 
 export const lmclient = new OpenAI({
-  apiKey: 'lm-studio',
+  apiKey: import.meta.env.VITE_LM_STUDIO_API_KEY,
   baseURL: 'http://localhost:1234/v1',
   dangerouslyAllowBrowser: true,
 })
