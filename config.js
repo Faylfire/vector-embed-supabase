@@ -8,6 +8,12 @@ export const openai = new OpenAI({
   dangerouslyAllowBrowser: true
 });
 
+export const lmclient = new OpenAI({
+  apiKey: 'lm-studio',
+  baseURL: 'http://localhost:1234/v1',
+  dangerouslyAllowBrowser: true,
+})
+
 /** Supabase config */
 const privateKey = import.meta.env.VITE_SUPABASE_API_KEY;
 if (!privateKey) throw new Error(`Expected env var SUPABASE_API_KEY`);
