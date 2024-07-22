@@ -75,6 +75,34 @@ async function lmMain(input){
   console.log('Embedding and storing complete!');
 }
 
+const conversation = [
+  { role: "system", content: "Below is an instruction that describes a task. Write a response that appropriately completes the request." },
+  { role: "user", content: "What is the capital of France and what is the population?" },
+];
+
+async function lmInference(input){
+  console.log('starting chat completion test...');
+    // Define the conversation
+
+    // Make the API call
+    const response = await lmclient.chat.completions.create({
+      model: "TheBloke/Mistral-7B-Instruct-v0.2-GGUF/mistral-7b-instruct-v0.2.Q6_K.gguf",
+      messages: input,
+      temperature: 0.8,
+    });
+    console.log(response)
+    // Print the response
+    const responseText = response.choices[0].message.content
+    console.log(responseText);
+
+  const root = document.getElementById('root')
+  const element = document.createElement('div')
+  element.innerHTML = responseText
+  root.appendChild(element)
+  console.log('Response provided');
+}
+
+
 function tryCatchWrapper(fn) {
   return async function(...args) {
     try {
@@ -87,7 +115,9 @@ function tryCatchWrapper(fn) {
   }
 }
 
-const catchLMMain = tryCatchWrapper(lmMain)
+//const catchLMMain = tryCatchWrapper(lmMain)
+const catchLMInference = tryCatchWrapper(lmInference)
+catchLMInference(conversation);
 //catchLMMain(podcasts)
 //main(content)
 
