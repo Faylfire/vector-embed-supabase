@@ -64,14 +64,7 @@ async function lmMain(input){
     }
   })
   //await supabase.from('documents').insert(data); //this pushes to a supabase vector database set to 1536, would need to create a database for vector size 1024 for bge-large-en-v1.5 embeddings
-
-  const root = document.getElementById('root')
-  const element = document.createElement('div')
-  element.innerHTML = JSON.stringify(data)
-  //element.textContent = 'hello'
-  console.log(element)
-  root.appendChild(element)
-  console.log(data)
+  displayResultsToWeb(JSON.stringify(data)) //
   console.log('Embedding and storing complete!');
 }
 
@@ -95,11 +88,16 @@ async function lmInference(input){
     const responseText = response.choices[0].message.content
     console.log(responseText);
 
+    displayResultsToWeb(responseText)
+    console.log('Response provided');
+}
+
+function displayResultsToWeb(results){
   const root = document.getElementById('root')
   const element = document.createElement('div')
-  element.innerHTML = responseText
+  element.innerHTML = results
   root.appendChild(element)
-  console.log('Response provided');
+  
 }
 
 
