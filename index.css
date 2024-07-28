@@ -2,3 +2,11 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+body {
+    background: #121212;
+    font-family: PT Serif, Georgia;
+    color: #e0e0e0;
+    padding: 20px;
+    margin-top:50px;
+}
